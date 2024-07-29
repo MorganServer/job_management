@@ -27,39 +27,89 @@ if (mysqli_num_rows($result) > 0) {
     $updated_at_formatted = date('M j, Y', strtotime($row['updated_at']));
 
     echo "
-    <button type='button' class='off-canvas-close-btn' data-bs-dismiss='offcanvas' aria-label='Close'><i class='bi bi-arrow-left-circle'></i></button>
-    <hr>
-    <div class='main-project-details'>
-        <div class='ms-3 me-3'>
-            <p><span class='float-end'><i style='font-size: 12px; margin-top: -5px;' class='bi bi-circle-fill " . ($status == 'Applied' ? "text-primary" : ($status == 'Interviewed' ? "text-info" : ($status == 'Offered' ? "text-success" : "text-danger"))) . "'></i> &nbsp; $status</span></p>
-            <h3 class='mt-3'>$job_title</h3>
-            <p class='text-secondary' style='font-size: 12px;'>
-                <span class='pe-3'>Last updated: $updated_at_formatted</span>
-                <span>Applied: $created_at</span>
-            </p>
-            <h4>Company Name</h4>
-            <p>$company</p>
-            <h4>Location</h4>
-            <p>$location</p>
-            <h4>Pay</h4>
-            <p>$pay</p>
-            <h4>Bonus Pay</h4>
-            <p>$bonus_pay</p>
-            <h4>Job Type</h4>
-            <p>$job_type</p>
-            <h4>Other Details</h4>
-            <ul class='tags'>
-                " . ($watchlist == 1 ? "<li>Watching</li>" : "") . "
-                " . ($interview_set == 1 ? "<li>Interview Set</li>" : "") . "
-            </ul>
-            <p>" . ($interview_set == 0 && $watchlist == 0 ? "No other details." : "") . "</p>
-            <h4>Notes</h4>
-            <p>" . ($notes ? $notes : "No listed notes.") . "</p>
-            <a href='$job_link' class='open__project' target='_blank' id='cardHover' rel='noopener noreferrer'>
-               Open Job &nbsp; 
-               <i class='bi bi-box-arrow-up-right'></i>
-            </a>
+    <div class='modal fade' id='updateApplicationModal' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
+        <div class='modal-dialog modal-xl'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h5 class='modal-title' id='updateApplicationModalLabel'>Update Application</h5>
+                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                </div>
+                <div class='modal-body'>
+                    <form id='updateApplicationForm' method='POST' action='update_job.php'>
+                        <input type='hidden' id='update-job-id' name='job_id' value='$job_id'>
+                        <div class='row mb-3'>
+                            <div class='col'>
+                                <label for='update-job_title' class='form-label'>Job Title</label>
+                                <input type='text' class='form-control' id='update-job_title' name='job_title' value='$job_title'>
+                            </div>
+                            <div class='col'>
+                                <label for='update-job_link' class='form-label'>Job Link</label>
+                                <input type='text' class='form-control' id='update-job_link' name='job_link' value='$job_link'>
+                            </div>
+                        </div>
+                        <div class='row mb-3'>
+                            <div class='col'>
+                                <label for='update-company' class='form-label'>Company</label>
+                                <input type='text' class='form-control' id='update-company' name='company' value='$company'>
+                            </div>
+                            <div class='col'>
+                                <label for='update-location' class='form-label'>Location</label>
+                                <input type='text' class='form-control' id='update-location' name='location' value='$location'>
+                            </div>
+                        </div>
+                        <div class='row mb-3'>
+                            <div class='col'>
+                                <label for='update-pay' class='form-label'>Pay</label>
+                                <input type='text' class='form-control' id='update-pay' name='pay' value='$pay'>
+                            </div>
+                            <div class='col'>
+                                <label for='update-bonus_pay' class='form-label'>Bonus Pay</label>
+                                <input type='text' class='form-control' id='update-bonus_pay' name='bonus_pay' value='$bonus_pay'>
+                            </div>
+                            <div class='col'>
+                                <label class='form-label' for='update-status'>Status</label>
+                                <select class='form-control' id='update-status' name='status'>
+                                    <option value=''>Please select one...</option>
+                                    <option value='Applied' " . ($status == 'Applied' ? 'selected' : '') . ">Applied</option>
+                                    <option value='Interviewed' " . ($status == 'Interviewed' ? 'selected' : '') . ">Interviewed</option>
+                                    <option value='Offered' " . ($status == 'Offered' ? 'selected' : '') . ">Offered</option>
+                                    <option value='Rejected' " . ($status == 'Rejected' ? 'selected' : '') . ">Rejected</option>
+                                </select>
+                            </div>
+                            <div class='col'>
+                                <label class='form-label' for='update-job_type'>Job Type</label>
+                                <select class='form-control' id='update-job_type' name='job_type'>
+                                    <option value=''>Please select one...</option>
+                                    <option value='Full Time' " . ($job_type == 'Full Time' ? 'selected' : '') . ">Full Time</option>
+                                    <option value='Part Time' " . ($job_type == 'Part Time' ? 'selected' : '') . ">Part Time</option>
+                                    <option value='Contract' " . ($job_type == 'Contract' ? 'selected' : '') . ">Contract</option>
+                                    <option value='Internship' " . ($job_type == 'Internship' ? 'selected' : '') . ">Internship</option>
+                                    <option value='Temporary' " . ($job_type == 'Temporary' ? 'selected' : '') . ">Temporary</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class='row mb-3'>
+                            <div class='col'>
+                                <label class='form-label' for='update-notes'>Notes</label>
+                                <textarea class='form-control' id='update-notes' name='notes' rows='5'>$notes</textarea>
+                            </div>
+                        </div>
+                        <div class='row mb-3 ps-3'>
+                            <div class='form-check'>
+                                <input type='checkbox' class='form-check-input' id='update-watchlist' name='watchlist' value='1' " . ($watchlist ? 'checked' : '') . ">
+                                <label class='form-check-label' for='update-watchlist'>Add to Watchlist</label>
+                            </div>
+                            <div class='form-check'>
+                                <input type='checkbox' class='form-check-input' id='update-interview_set' name='interview_set' value='1' " . ($interview_set ? 'checked' : '') . ">
+                                <label class='form-check-label' for='update-interview_set'>Interview Set</label>
+                            </div>
+                        </div>
+                        <input type='submit' name='update-application' class='form-btn' value='Update Application'>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>";
+    </div>
+    ";
 }
 ?>
