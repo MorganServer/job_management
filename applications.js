@@ -55,28 +55,6 @@ $(document).ready(function() {
     $(document).on('click', '.edit', function() {
         var jobId = $(this).data('job-id');
         fetchUpdateJobDetails(jobId);
-
-        var targetJobId = 'app-modal-' + jobId;
-        var existingModal = document.getElementById(targetJobId);
-
-        if (!existingModal) {
-            // Create and append Modal dynamically if not exists
-            var modalHtml = `
-                <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
-                    <div class='modal-dialog modal-xl'>
-                        <div class='modal-content'>
-                            <!-- Content will be dynamically loaded here -->
-                        </div>
-                    </div>
-                </div>
-            `;
-            $('body').append(modalHtml);
-        }
-
-        // Initialize and show the Modal
-        var modalElement = document.getElementById(targetJobId);
-        var modal = new bootstrap.Modal(modalElement);
-        modal.show();
     });
 });
 
@@ -87,9 +65,24 @@ function fetchUpdateJobDetails(jobId) {
         data: { job_id: jobId },
         success: function(data) {
             var targetJobId = 'app-modal-' + jobId;
-            $('#' + targetJobId + ' .modal-content').html(data);
+            var existingModal = document.getElementById(targetJobId);
 
-            // Show the modal after content has been loaded
+            if (!existingModal) {
+                // Create and append Modal dynamically if not exists
+                var modalHtml = `
+                    <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
+                        <div class='modal-dialog modal-xl'>
+                            ${data}
+                        </div>
+                    </div>
+                `;
+                $('body').append(modalHtml);
+            } else {
+                // Update existing modal content
+                $('#' + targetJobId + ' .modal-content').html(data);
+            }
+
+            // Initialize and show the Modal
             var modalElement = document.getElementById(targetJobId);
             var modal = new bootstrap.Modal(modalElement);
             modal.show();
