@@ -26,7 +26,11 @@ if (mysqli_num_rows($result) > 0) {
     $job_link       = $row['job_link'];
     $updated_at_formatted = date('M j, Y', strtotime($row['updated_at']));
 
-    echo "  <div class='modal-header'>
+    echo "  
+
+    <div class='modal-dialog modal-xl modal-dialog-scrollable'>
+                                        <div class='modal-content'>
+    <div class='modal-header'>
     <h5 class='modal-title' id='updateApplicationModalLabel'>Update Application</h5>
     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
 </div>
