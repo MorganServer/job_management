@@ -124,38 +124,32 @@ require_once "application_queries.php";
         <!-- end Add Application Modal -->
 
 
-        <?php if (isset($_GET['update_success'])): ?>
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-              <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">
-                        <i class="bi bi-circle-fill text-success" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>
-                        Success
-                    </strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    <strong>Success!</strong> Application updated successfully.
-                </div>
-              </div>
-            </div>
-
-        <?php elseif (isset($_GET['update_error'])): ?>
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-              <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">
-                        <i class="bi bi-circle-fill text-danger" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>
-                        Failure
-                    </strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    <strong>Failure!</strong> Application update failed.
-                </div>
-              </div>
-            </div>
-        <?php endif; ?>
+        <?php
+        session_start(); // Start the session at the top of the script
+        
+        if (isset($_SESSION['message'])) {
+            $messageType = $_SESSION['message']['type'];
+            $messageText = $_SESSION['message']['text'];
+        
+            echo '<div class="toast-container position-fixed bottom-0 end-0 p-3">';
+            echo '<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">';
+            echo '<div class="toast-header">';
+            echo '<strong class="me-auto">';
+            echo $messageType === 'success' ? '<i class="bi bi-circle-fill text-success" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>' : '<i class="bi      bi-circle-fill text-danger" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>';
+            echo ucfirst($messageType);
+            echo '</strong>';
+            echo '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>';
+            echo '</div>';
+            echo '<div class="toast-body">';
+            echo '<strong>' . ucfirst($messageType) . '!</strong> ' . $messageText;
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        
+            // Clear the message from the session after displaying it
+            unset($_SESSION['message']);
+        }
+        ?>
 
 
 
