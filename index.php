@@ -1,3 +1,7 @@
+<?php
+require_once "application_queries.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
