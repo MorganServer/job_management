@@ -124,92 +124,6 @@ require_once "application_queries.php";
         <!-- end Add Application Modal -->
          
 
-        <!-- Update Application Modal -->
-<div class="modal fade" id="updateApplicationModal" tabindex="-1" aria-labelledby="updateApplicationModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="updateApplicationModalLabel">Update Application</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="updateApplicationForm" method="POST" action="update_job.php">
-                    <input type="hidden" id="update-job-id" name="job_id">
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="update-job_title" class="form-label">Job Title</label>
-                            <input type="text" class="form-control" id="update-job_title" name="job_title">
-                        </div>
-                        <div class="col">
-                            <label for="update-job_link" class="form-label">Job Link</label>
-                            <input type="text" class="form-control" id="update-job_link" name="job_link">
-                        </div>
-                    </div>
-                    <!-- Add other fields as needed -->
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="update-company" class="form-label">Company</label>
-                            <input type="text" class="form-control" id="update-company" name="company">
-                        </div>
-                        <div class="col">
-                            <label for="update-location" class="form-label">Location</label>
-                            <input type="text" class="form-control" id="update-location" name="location">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="update-pay" class="form-label">Pay</label>
-                            <input type="text" class="form-control" id="update-pay" name="pay">
-                        </div>
-                        <div class="col">
-                            <label for="update-bonus_pay" class="form-label">Bonus Pay</label>
-                            <input type="text" class="form-control" id="update-bonus_pay" name="bonus_pay">
-                        </div>
-                        <div class="col">
-                            <label class="form-label" for="update-status">Status</label>
-                            <select class="form-control" id="update-status" name="status">
-                                <option value="">Please select one...</option>
-                                <option value="Applied">Applied</option>
-                                <option value="Interviewed">Interviewed</option>
-                                <option value="Offered">Offered</option>
-                                <option value="Rejected">Rejected</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <label class="form-label" for="update-job_type">Job Type</label>
-                            <select class="form-control" id="update-job_type" name="job_type">
-                                <option value="">Please select one...</option>
-                                <option value="Full Time">Full Time</option>
-                                <option value="Part Time">Part Time</option>
-                                <option value="Contract">Contract</option>
-                                <option value="Internship">Internship</option>
-                                <option value="Temporary">Temporary</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label class="form-label" for="update-notes">Notes</label>
-                            <textarea class="form-control" id="update-notes" name="notes" rows="5"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-3 ps-3">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="update-watchlist" name="watchlist" value="1">
-                            <label class="form-check-label" for="update-watchlist">Add to Watchlist</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="update-interview_set" name="interview_set" value="1">
-                            <label class="form-check-label" for="update-interview_set">Interview Set</label>
-                        </div>
-                    </div>
-                    <input type="submit" name="update-application" class="form-btn" value="Update Application">
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end Update Application Modal -->
 
 <!-- Example Modal Structure -->
 <div class="modal fade" id="app-modal-1" tabindex="-1" aria-labelledby="updateApplicationModalLabel" aria-hidden="true">
@@ -221,7 +135,31 @@ require_once "application_queries.php";
 </div>
 
 
-<?php if (isset($_GET['update_success'])): ?>
+        <?php if (isset($_GET['update_success'])): ?>
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">
+                            <i class="bi bi-circle-fill text-success" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>
+                            Success
+                        </strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <?php echo $_SESSION['toast_message']; ?>
+                    </div>
+                </div>
+            </div>
+                <script>
+                    setTimeout(function() {
+                        var toastElement = document.getElementById('liveToast');
+                        var toast = new bootstrap.Toast(toastElement);
+                        toast.hide();
+                        // Clear the session variable after the toast hides
+                        <?php unset($_SESSION['toast_message']); ?>
+                    }, 5000);
+                </script>
+            <?php endif; ?>
     <div class="alert alert-success" role="alert">
         <strong>Success!</strong> Application updated successfully.
     </div>
@@ -256,120 +194,120 @@ require_once "application_queries.php";
 
     <script>
         $(document).ready(function() {
-    // Function to fetch jobs based on the query
-    function fetchJobs(query = '') {
-        $.ajax({
-            url: 'search_bar_function.php',
-            method: 'POST',
-            data: { query: query },
-            success: function(data) {
-                $('#jobs-table-body').html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', status, error);
+            // Function to fetch jobs based on the query
+            function fetchJobs(query = '') {
+                $.ajax({
+                    url: 'search_bar_function.php',
+                    method: 'POST',
+                    data: { query: query },
+                    success: function(data) {
+                        $('#jobs-table-body').html(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                    }
+                });
             }
-        });
-    }
-
-    // Function to fetch job details for Offcanvas
-    function fetchJobDetails(jobId) {
-        $.ajax({
-            url: 'get_job_details.php', // Update with the actual URL
-            type: 'POST',
-            data: { job_id: jobId },
-            success: function(data) {
-                var canvasContentId = 'app-canvas-content-' + jobId;
-                $('#' + canvasContentId).html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching job details:', status, error);
+        
+            // Function to fetch job details for Offcanvas
+            function fetchJobDetails(jobId) {
+                $.ajax({
+                    url: 'get_job_details.php', // Update with the actual URL
+                    type: 'POST',
+                    data: { job_id: jobId },
+                    success: function(data) {
+                        var canvasContentId = 'app-canvas-content-' + jobId;
+                        $('#' + canvasContentId).html(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching job details:', status, error);
+                    }
+                });
             }
-        });
-    }
-
-    // Function to fetch and update job details in the Modal
-    function fetchUpdateJobDetails(jobId) {
-        $.ajax({
-            url: 'update_job_details.php',
-            type: 'POST',
-            data: { job_id: jobId },
-            success: function(data) {
-                var targetJobId = 'app-modal-' + jobId;
-                var existingModal = document.getElementById(targetJobId);
-            
-                if (!existingModal) {
-                    // Create and append Modal dynamically if not exists
-                    var modalHtml = `
-                        <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
-                            <div class='modal-dialog modal-xl'>
-                                <div class='modal-content'>
-                                    ${data}
+        
+            // Function to fetch and update job details in the Modal
+            function fetchUpdateJobDetails(jobId) {
+                $.ajax({
+                    url: 'update_job_details.php',
+                    type: 'POST',
+                    data: { job_id: jobId },
+                    success: function(data) {
+                        var targetJobId = 'app-modal-' + jobId;
+                        var existingModal = document.getElementById(targetJobId);
+                    
+                        if (!existingModal) {
+                            // Create and append Modal dynamically if not exists
+                            var modalHtml = `
+                                <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
+                                    <div class='modal-dialog modal-xl'>
+                                        <div class='modal-content'>
+                                            ${data}
+                                        </div>
+                                    </div>
                                 </div>
+                            `;
+                            $('body').append(modalHtml);
+                        } else {
+                            // Update existing modal content
+                            $('#' + targetJobId + ' .modal-content').html(data);
+                        }
+                    
+                        // Initialize and show the Modal
+                        var modalElement = document.getElementById(targetJobId);
+                        var modal = new bootstrap.Modal(modalElement);
+                        modal.show();
+                    },
+                    error: function(error) {
+                        console.error('Error fetching job details:', error);
+                    }
+                });
+            }
+        
+            // Initial fetch to load all jobs
+            fetchJobs();
+        
+            // Fetch jobs as user types in the search input
+            $('#search-input').on('input', function() {
+                let query = $(this).val();
+                if (query.length >= 3) {
+                    fetchJobs(query);
+                } else {
+                    fetchJobs(); 
+                }
+            });
+        
+            // Handling click events to open the Offcanvas
+            $(document).on('click', '.view', function() {
+                var jobId = $(this).data('job-id');
+                fetchJobDetails(jobId);
+            
+                var targetId = 'app-canvas-' + jobId;
+                var existingCanvas = document.getElementById(targetId);
+            
+                if (!existingCanvas) {
+                    // Create and append Offcanvas dynamically if not exists
+                    var offcanvasHtml = `
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="${targetId}" aria-labelledby="offcanvasRightLabel">
+                            <div class="offcanvas-body" id="app-canvas-content-${jobId}">
+                                <!-- Content will be dynamically loaded here -->
                             </div>
                         </div>
                     `;
-                    $('body').append(modalHtml);
-                } else {
-                    // Update existing modal content
-                    $('#' + targetJobId + ' .modal-content').html(data);
+                    $('body').append(offcanvasHtml);
                 }
             
-                // Initialize and show the Modal
-                var modalElement = document.getElementById(targetJobId);
-                var modal = new bootstrap.Modal(modalElement);
-                modal.show();
-            },
-            error: function(error) {
-                console.error('Error fetching job details:', error);
-            }
+                // Initialize and show the Offcanvas
+                var canvasElement = document.getElementById(targetId);
+                var canvas = new bootstrap.Offcanvas(canvasElement);
+                canvas.show();
+            });
+        
+            // Handling click events to open the Modal
+            $(document).on('click', '.edit', function() {
+                var jobId = $(this).data('job-id');
+                fetchUpdateJobDetails(jobId);
+            });
         });
-    }
-
-    // Initial fetch to load all jobs
-    fetchJobs();
-
-    // Fetch jobs as user types in the search input
-    $('#search-input').on('input', function() {
-        let query = $(this).val();
-        if (query.length >= 3) {
-            fetchJobs(query);
-        } else {
-            fetchJobs(); 
-        }
-    });
-
-    // Handling click events to open the Offcanvas
-    $(document).on('click', '.view', function() {
-        var jobId = $(this).data('job-id');
-        fetchJobDetails(jobId);
-
-        var targetId = 'app-canvas-' + jobId;
-        var existingCanvas = document.getElementById(targetId);
-
-        if (!existingCanvas) {
-            // Create and append Offcanvas dynamically if not exists
-            var offcanvasHtml = `
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="${targetId}" aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-body" id="app-canvas-content-${jobId}">
-                        <!-- Content will be dynamically loaded here -->
-                    </div>
-                </div>
-            `;
-            $('body').append(offcanvasHtml);
-        }
-
-        // Initialize and show the Offcanvas
-        var canvasElement = document.getElementById(targetId);
-        var canvas = new bootstrap.Offcanvas(canvasElement);
-        canvas.show();
-    });
-
-    // Handling click events to open the Modal
-    $(document).on('click', '.edit', function() {
-        var jobId = $(this).data('job-id');
-        fetchUpdateJobDetails(jobId);
-    });
-});
 
     </script>
 
