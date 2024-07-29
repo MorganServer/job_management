@@ -31,7 +31,7 @@ if (mysqli_num_rows($result) > 0) {
 
         // Generate table row with job_id in data attributes
         echo "<tr>
-        <th scope='row'>$id</th>
+        <th scope='row'>$idno</th>
         <td>$job_title</td>
         <td>$company</td>
         <td>$location</td>
