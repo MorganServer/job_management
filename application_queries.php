@@ -44,9 +44,6 @@ require_once "connection.php";
         $watchlist = isset($_POST['watchlist']) ? 1 : 0;
         $interview_set = isset($_POST['interview_set']) ? 1 : 0;
 
-        // Database connection
-        include('connection.php');
-
         $query = "UPDATE job_applications SET
                   job_title = '$job_title',
                   job_link = '$job_link',
