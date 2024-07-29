@@ -46,7 +46,7 @@ if (mysqli_num_rows($result) > 0) {
                         <i class='bi bi-pencil-square' style='color:#005382;'></i>
                     </a>
                     &nbsp;
-                    <a href='/console/application/?appdelid=$id' class='delete' style='text-decoration: none;'>
+                    <a href='/?appdelid=$id' class='delete' style='text-decoration: none;'>
                         <i class='bi bi-trash' style='color:#941515;'></i>
                     </a>
                 </td>
