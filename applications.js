@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    console.log('JavaScript loaded');
     // Function to fetch jobs based on the query
     function fetchJobs(query = '') {
         console.log('Fetching jobs with query:', query); // Debug statement
