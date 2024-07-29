@@ -175,3 +175,12 @@
   .search-bar .form-control.ps-5 {
       padding-left: 40px; /* Space for the search icon */
   }
+
+  .form-btn {
+    background-color: rgb(50, 100, 130);
+    border-radius: 50px;
+    border: 2px solid rgb(50, 100, 130);
+    padding: 10px 25px;
+    text-decoration: none;
+    color: white;
+  }
