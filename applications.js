@@ -38,7 +38,6 @@ $(document).ready(function() {
             var offcanvasHtml = `
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="${targetId}" aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-body" id="app-canvas-content-${jobId}">
-                        
                         <!-- Content will be dynamically loaded here -->
                     </div>
                 </div>
@@ -50,16 +49,6 @@ $(document).ready(function() {
         var canvasElement = document.getElementById(targetId);
         var canvas = new bootstrap.Offcanvas(canvasElement);
         canvas.show();
-    });
-
-    // Handling click events to open the edit modal
-    $(document).on('click', '.edit', function() {
-        var jobId = $(this).data('job-id');
-        fetchJobDetailsForModal(jobId);
-
-        // Show the edit modal
-        var editModal = new bootstrap.Modal(document.getElementById('editApplicationModal'));
-        editModal.show();
     });
 
     function fetchJobDetails(jobId) {
@@ -76,14 +65,19 @@ $(document).ready(function() {
         });
     }
 
-    function fetchJobDetailsForModal(jobId) {
+    // Handling click events to open the edit modal
+    $(document).on('click', '.edit', function() {
+        var jobId = $(this).data('job-id');
+        fetchJobDetailsForEdit(jobId);
+    });
+
+    function fetchJobDetailsForEdit(jobId) {
         $.ajax({
             url: 'get_job_details.php',
             method: 'POST',
             data: { job_id: jobId },
             success: function(data) {
                 var jobDetails = JSON.parse(data);
-                
                 $('#edit-job-id').val(jobDetails.job_id);
                 $('#edit-job_title').val(jobDetails.job_title);
                 $('#edit-job_link').val(jobDetails.job_link);
@@ -96,6 +90,7 @@ $(document).ready(function() {
                 $('#edit-notes').val(jobDetails.notes);
                 $('#edit-watchlist').prop('checked', jobDetails.watchlist == 1);
                 $('#edit-interview_set').prop('checked', jobDetails.interview_set == 1);
+                $('#editApplicationModal').modal('show'); // Show the modal
             },
             error: function(xhr, status, error) {
                 console.error('AJAX Error:', status, error);
