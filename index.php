@@ -150,16 +150,7 @@ require_once "application_queries.php";
                     </div>
                 </div>
             </div>
-                <script>
-                    setTimeout(function() {
-                        var toastElement = document.getElementById('liveToast');
-                        var toast = new bootstrap.Toast(toastElement);
-                        toast.hide();
-                        // Clear the session variable after the toast hides
-                        <?php //unset($_SESSION['toast_message']); ?>
-                    }, 5000);
-                </script>
-            <?php endif; ?>
+                
     <div class="alert alert-success" role="alert">
         <strong>Success!</strong> Application updated successfully.
     </div>
