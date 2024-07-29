@@ -94,12 +94,11 @@ if (mysqli_num_rows($result) > 0) {
                     </div>   
                     
                     <div class='mb-3'></div> 
-                    </div>
-                    </form>
-                    <div class='modal-footer'>
-                        <input type='submit' name='update-application' class='form-btn' value='Update Application'>
                     
-                    </div>
+                    
+                        <input type='submit' name='update-application' class='form-btn' value='Update Application'>
+                        </form>
+                        </div>
                 
                 
 
