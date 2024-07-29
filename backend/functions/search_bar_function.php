@@ -1,5 +1,5 @@
 <?php
-require_once "connection.php";
+require_once "../database/connection.php";
 
 $query = isset($_POST['query']) ? $_POST['query'] : '';
 $query = mysqli_real_escape_string($conn, $query);
