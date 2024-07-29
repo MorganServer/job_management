@@ -274,7 +274,7 @@ require_once "application_queries.php";
     // Function to fetch job details for Offcanvas
     function fetchJobDetails(jobId) {
         $.ajax({
-            url: 'fetch_job_details.php', // Update with the actual URL
+            url: 'get_job_details.php', // Update with the actual URL
             type: 'POST',
             data: { job_id: jobId },
             success: function(data) {
