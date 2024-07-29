@@ -1,5 +1,5 @@
 <?php
-require_once "connection.php";
+// require_once "connection.php";
 
 // Job - Add Job
     if (isset($_POST['add-application'])) {
