@@ -122,17 +122,6 @@ require_once "application_queries.php";
               </div>
             </div>
         <!-- end Add Application Modal -->
-         
-
-
-<!-- Example Modal Structure -->
-<div class="modal fade" id="app-modal-1" tabindex="-1" aria-labelledby="updateApplicationModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <!-- Content will be dynamically loaded here -->
-        </div>
-    </div>
-</div>
 
 
         <?php if (isset($_GET['update_success'])): ?>
