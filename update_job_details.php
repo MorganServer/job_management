@@ -92,11 +92,12 @@ if (mysqli_num_rows($result) > 0) {
                 <label class='form-check-label' for='update-interview_set'>Interview Set</label>
             </div>
         </div> 
-    </form>
+    
 </div>
 <div class='modal-footer'>
     <input type='submit' name='update-application' class='btn btn-primary' value='Update Application'>
 </div>
+</form>
 
                 
                 
