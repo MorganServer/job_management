@@ -254,7 +254,108 @@ require_once "application_queries.php";
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <script src="app_script.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to fetch jobs based on the query
+            function fetchJobs(query = '') {
+                $.ajax({
+                    url: 'search_bar_function.php',
+                    method: 'POST',
+                    data: { query: query },
+                    success: function(data) {
+                        $('#jobs-table-body').html(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                    }
+                });
+            }
+        
+            // Initial fetch to load all jobs
+            fetchJobs();
+        
+            // Fetch jobs as user types in the search input
+            $('#search-input').on('input', function() {
+                let query = $(this).val();
+                if (query.length >= 3) {
+                    fetchJobs(query);
+                } else {
+                    fetchJobs(); 
+                }
+            });
+        
+            // Handling click events to open the Offcanvas
+            $(document).on('click', '.view', function() {
+                var jobId = $(this).data('job-id');
+                fetchJobDetails(jobId);
+            
+                var targetId = 'app-canvas-' + jobId;
+                var existingCanvas = document.getElementById(targetId);
+            
+                if (!existingCanvas) {
+                    // Create and append Offcanvas dynamically if not exists
+                    var offcanvasHtml = `
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="${targetId}" aria-labelledby="offcanvasRightLabel">
+                            <div class="offcanvas-body" id="app-canvas-content-${jobId}">
+                                <!-- Content will be dynamically loaded here -->
+                            </div>
+                        </div>
+                    `;
+                    $('body').append(offcanvasHtml);
+                }
+            
+                // Initialize and show the Offcanvas
+                var canvasElement = document.getElementById(targetId);
+                var canvas = new bootstrap.Offcanvas(canvasElement);
+                canvas.show();
+            });
+        
+            // Handling click events to open the Modal
+            $(document).on('click', '.edit', function() {
+                var jobId = $(this).data('job-id');
+                fetchUpdateJobDetails(jobId);
+            });
+        });
+
+        // Function to fetch and update job details in the Modal
+        function fetchUpdateJobDetails(jobId) {
+            $.ajax({
+                url: 'update_job_details.php',
+                type: 'POST',
+                data: { job_id: jobId },
+                success: function(data) {
+                    var targetJobId = 'app-modal-' + jobId;
+                    var existingModal = document.getElementById(targetJobId);
+                
+                    if (!existingModal) {
+                        // Create and append Modal dynamically if not exists
+                        var modalHtml = `
+                            <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
+                                <div class='modal-dialog modal-xl'>
+                                    <div class='modal-content'>
+                                        ${data}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        $('body').append(modalHtml);
+                    } else {
+                        // Update existing modal content
+                        $('#' + targetJobId + ' .modal-content').html(data);
+                    }
+                
+                    // Initialize and show the Modal
+                    var modalElement = document.getElementById(targetJobId);
+                    var modal = new bootstrap.Modal(modalElement);
+                    modal.show();
+                },
+                error: function(error) {
+                    console.error('Error fetching job details:', error);
+                }
+            });
+        }
+
+    </script>
 
 </body>
 </html>
