@@ -5,7 +5,7 @@ require_once "application_queries.php";
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
@@ -17,7 +17,6 @@ require_once "application_queries.php";
 
 </head>
 <body>
-
     <div class="content">
         <div class="search-bar position-relative">
             <form class="d-flex" id="search-form">
@@ -114,34 +113,33 @@ require_once "application_queries.php";
         <!-- end Add Application Modal -->
 
 
+        <!-- Success and Failure Toasts -->
         <?php
-        session_start(); // Start the session at the top of the script
+            session_start(); // Start the session at the top of the script
 
-        if (isset($_SESSION['message'])) {
-            $messageType = $_SESSION['message']['type'];
-            $messageText = $_SESSION['message']['text'];
-        
-            echo '<div class="toast-container position-fixed bottom-0 end-0 p-3">';
-            echo '<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">';
-            echo '<div class="toast-header">';
-            echo '<strong class="me-auto">';
-            echo $messageType === 'success' ? '<i class="bi bi-circle-fill text-success" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>&nbsp;&nbsp;' : '<i class="bi      bi-circle-fill text-danger" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>&nbsp;&nbsp;';
-            echo ucfirst($messageType);
-            echo '</strong>';
-            echo '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>';
-            echo '</div>';
-            echo '<div class="toast-body">';
-            echo '<strong>' . ucfirst($messageType) . '!</strong> ' . $messageText;
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
-        
-            // Clear the message from the session after displaying it
-            unset($_SESSION['message']);
-        }
+            if (isset($_SESSION['message'])) {
+                $messageType = $_SESSION['message']['type'];
+                $messageText = $_SESSION['message']['text'];
+            
+                echo '<div class="toast-container position-fixed bottom-0 end-0 p-3">';
+                echo '<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">';
+                echo '<div class="toast-header">';
+                echo '<strong class="me-auto">';
+                echo $messageType === 'success' ? '<i class="bi bi-circle-fill text-success" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>&nbsp;&nbsp;' : '<i class="bi      bi-circle-fill text-danger" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>&nbsp;&nbsp;';
+                echo ucfirst($messageType);
+                echo '</strong>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>';
+                echo '</div>';
+                echo '<div class="toast-body">';
+                echo '<strong>' . ucfirst($messageType) . '!</strong> ' . $messageText;
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            
+                // Clear the message from the session after displaying it
+                unset($_SESSION['message']);
+            }
         ?>
-
-
 
         <table class="table mx-auto mt-5" style="width: 95%;">
             <thead>
