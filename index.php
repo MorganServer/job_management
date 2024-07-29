@@ -146,7 +146,7 @@ require_once "application_queries.php";
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        <?php echo $_SESSION['toast_message']; ?>
+                    <strong>Success!</strong> Application updated successfully.
                     </div>
                 </div>
             </div>
