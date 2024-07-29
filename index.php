@@ -36,12 +36,83 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <!-- Your form or content here -->
-                    <p>Content for the modal.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <form method="POST" action="" class="mt-4">
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="job_title" class="form-label">Job Title</label>
+                                <input type="text" class="form-control" id="job_title" name="job_title">
+                            </div>
+                            <div class="col">
+                                <label for="job_link" class="form-label">Job Link</label>
+                                <input type="text" class="form-control" id="job_link" name="job_link">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="company" class="form-label">Company</label>
+                                <input type="text" class="form-control" id="company" name="company">
+                            </div>
+                            <div class="col">
+                                <label for="location" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="location" name="location">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="pay" class="form-label">Pay</label>
+                                <input type="text" class="form-control" id="pay" name="pay">
+                            </div>
+                            <div class="col">
+                                <label for="bonus_pay" class="form-label">Bonus Pay  <span class="text-muted" style="font-size: 10px;">Optional</span></label>
+                                <input type="text" class="form-control" id="bonus_pay" name="bonus_pay">
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="status">Status</label>
+                                <select class="form-control" name="status">
+                                    <option value="">Please select one...</option>
+                                    <option value="Applied">Applied</option>
+                                    <option value="Interviewed">Interviewed</option>
+                                    <option value="Offered">Offered</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="job_type">Job Type</label>
+                                <select class="form-control" name="job_type">
+                                    <option value="">Please select one...</option>
+                                    <option value="Full Time">Full Time</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Contract">Contract</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Temporary">Temporary</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label class="form-label" for="notes">Notes</label>
+                                <textarea class="form-control" name="notes" rows="5"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 ps-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="watchlist" name="watchlist" value="1">
+                                <label class="form-check-label" for="watchlist">Add to Watchlist</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="interview_set" name="interview_set" value="1">
+                                <label class="form-check-label" for="interview_set">Interview Set</label>
+                            </div>
+                        </div>
+
+                        <input type="submit" name="add-application" class="form-btn" value="Add Application">
+                        <div class="pb-4"></div>
+                    </form>
                   </div>
                 </div>
               </div>
