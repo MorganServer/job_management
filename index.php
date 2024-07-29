@@ -11,6 +11,7 @@ require_once "application_queries.php";
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="https://cdn.tiny.cloud/1/7kainuaawjddfzf3pj7t2fm3qdjgq5smjfjtsw3l4kqfd1h4/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
     <title>Applications</title>
 
@@ -300,6 +301,15 @@ require_once "application_queries.php";
           var toast = new bootstrap.Toast(toastElement);
           toast.show();
         }
+      });
+    </script>
+
+    <!-- tinyMCE -->
+    <script>
+      tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap |   removeformat',
       });
     </script>
 
