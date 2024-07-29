@@ -140,11 +140,22 @@ require_once "application_queries.php";
               </div>
             </div>
 
-<?php elseif (isset($_GET['update_error'])): ?>
-    <div class="alert alert-danger" role="alert">
-        <strong>Error!</strong> There was an issue updating the application.
-    </div>
-<?php endif; ?>
+        <?php elseif (isset($_GET['update_error'])): ?>
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+              <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">
+                        <i class="bi bi-circle-fill text-danager" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>
+                        Failure
+                    </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <strong>Failure!</strong> Application update failed.
+                </div>
+              </div>
+            </div>
+        <?php endif; ?>
 
 
 
