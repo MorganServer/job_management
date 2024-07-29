@@ -24,9 +24,31 @@
         <div class="mt-5"></div>
         <div class="top-content d-flex justify-content-between align-items-center">
             <h2 class="ms-5">Applications</h2>
-            <a href="/console/application/add-application" class="badge text-bg-success text-decoration-none me-5">Add Application</a>
+            <a href="#" class="badge text-bg-success text-decoration-none me-5" data-bs-toggle="modal" data-bs-target="#addApplicationModal">Add Application</a>
         </div>
-        
+
+        <!-- Add Application Modal -->
+            <div class="modal fade" id="addApplicationModal" tabindex="-1" aria-labelledby="addApplicationModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addApplicationModalLabel">Add Application</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Your form or content here -->
+                    <p>Content for the modal.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!-- end Add Application Modal -->
+
+
         <table class="table mx-auto mt-5" style="width: 95%;">
             <thead>
                 <tr>
