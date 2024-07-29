@@ -1,5 +1,5 @@
 <?php
-require_once "connection.php";
+// require_once "connection.php";
 
 $job_id = isset($_POST['job_id']) ? intval($_POST['job_id']) : 0;
 
