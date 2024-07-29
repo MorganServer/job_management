@@ -97,6 +97,7 @@ if (mysqli_num_rows($result) > 0) {
             <button type='submit' name='update-application' class='btn btn-primary'>Update Application</button>
         </div>
     </form>
+    </div>
 
 
                 
