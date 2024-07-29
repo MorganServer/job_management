@@ -29,29 +29,28 @@ if (mysqli_num_rows($result) > 0) {
         $job_link       = $row['job_link'];
         $updated_at_formatted = date('M j, Y', strtotime($row['updated_at']));
 
-        // Generate table row with job_id in data attribute
+        // Generate table row with job_id in data attributes
         echo "<tr>
-        <th scope='row'>$idno</th>
-        <td>$job_title</td>
-        <td>$company</td>
-        <td>$location</td>
-        <td>$created_at</td>
-        <td>$status</td>
-        <td style='font-size: 20px;'>
-            <a class='view' data-job-id='$id' style='text-decoration: none; cursor: pointer;'>
-                <i class='bi bi-eye text-success'></i>
-            </a>
-            &nbsp;
-            <a class='edit' data-job-id='$id' data-bs-toggle='modal' data-bs-target='#editApplicationModal' style='text-decoration: none;'>
-                <i class='bi bi-pencil-square' style='color:#005382;'></i>
-            </a>
-            &nbsp;
-            <a href='/?appdelid=$id' class='delete' style='text-decoration: none;'>
-                <i class='bi bi-trash' style='color:#941515;'></i>
-            </a>
-        </td>
-        </tr>";
-
+                <th scope='row'>$idno</th>
+                <td>$job_title</td>
+                <td>$company</td>
+                <td>$location</td>
+                <td>$created_at</td>
+                <td>$status</td>
+                <td style='font-size: 20px;'>
+                    <a class='view' data-job-id='$id' style='text-decoration: none; cursor: pointer;'>
+                        <i class='bi bi-eye text-success'></i>
+                    </a>
+                    &nbsp; 
+                    <a class='edit' data-job-id='$id' style='text-decoration: none; cursor: pointer;'>
+                        <i class='bi bi-pencil-square' style='color:#005382;'></i>
+                    </a>
+                    &nbsp;
+                    <a href='/?appdelid=$id' class='delete' style='text-decoration: none;'>
+                        <i class='bi bi-trash' style='color:#941515;'></i>
+                    </a>
+                </td>
+              </tr>";
     }
 } else {
     echo "<tr><td colspan='7' class='text-center'>No jobs found.</td></tr>";
