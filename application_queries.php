@@ -30,26 +30,43 @@ require_once "connection.php";
 // End Job - Add Job
 
 // Job - Update Job
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $job_id        = intval($_POST['job_id']);
-        $job_title     = mysqli_real_escape_string($conn, $_POST['job_title']);
-        $job_link      = mysqli_real_escape_string($conn, $_POST['job_link']);
-        $company       = mysqli_real_escape_string($conn, $_POST['company']);
-        $location      = mysqli_real_escape_string($conn, $_POST['location']);
-        $pay           = mysqli_real_escape_string($conn, $_POST['pay']);
-        $bonus_pay     = mysqli_real_escape_string($conn, $_POST['bonus_pay']);
-        $status        = mysqli_real_escape_string($conn, $_POST['status']);
-        $job_type      = mysqli_real_escape_string($conn, $_POST['job_type']);
-        $notes         = mysqli_real_escape_string($conn, $_POST['notes']);
-        $watchlist     = isset($_POST['watchlist']) ? 1 : 0;
+    if (isset($_POST['update-application'])) {
+        $job_id = $_POST['job_id'];
+        $job_title = $_POST['job_title'];
+        $job_link = $_POST['job_link'];
+        $company = $_POST['company'];
+        $location = $_POST['location'];
+        $pay = $_POST['pay'];
+        $bonus_pay = $_POST['bonus_pay'];
+        $status = $_POST['status'];
+        $job_type = $_POST['job_type'];
+        $notes = $_POST['notes'];
+        $watchlist = isset($_POST['watchlist']) ? 1 : 0;
         $interview_set = isset($_POST['interview_set']) ? 1 : 0;
-    
-        $sql = "UPDATE jobs SET job_title='$job_title', job_link='$job_link', company='$company', location='$location', pay='$pay', bonus_pay='$bonus_pay', status='$status', job_type='$job_type', notes='$notes', watchlist=$watchlist, interview_set=$interview_set WHERE job_id=$job_id";
-    
-        if (mysqli_query($conn, $sql)) {
-            header("Location: /?update=success"); // Redirect back to the list with a success message
+
+        // Database connection
+        include('connection.php');
+
+        $query = "UPDATE job_applications SET
+                  job_title = '$job_title',
+                  job_link = '$job_link',
+                  company = '$company',
+                  location = '$location',
+                  pay = '$pay',
+                  bonus_pay = '$bonus_pay',
+                  status = '$status',
+                  job_type = '$job_type',
+                  notes = '$notes',
+                  watchlist = '$watchlist',
+                  interview_set = '$interview_set'
+                  WHERE id = '$job_id'";
+
+        if (mysqli_query($conn, $query)) {
+            // Redirect with success message
+            header("Location: /?update_success=1");
         } else {
-            echo "Error updating record: " . mysqli_error($conn);
+            // Redirect with error message
+            header("Location: /?update_error=1");
         }
     }
 // End Job - Update Job

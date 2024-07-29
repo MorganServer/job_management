@@ -26,7 +26,7 @@ $(document).ready(function() {
     });
 
     // Handling click events to open the Offcanvas
-    $(document).on('click', '.edit', function() {
+    $(document).on('click', '.view', function() {
         var jobId = $(this).data('job-id');
         fetchJobDetails(jobId);
 
@@ -37,10 +37,6 @@ $(document).ready(function() {
             // Create and append Offcanvas dynamically if not exists
             var offcanvasHtml = `
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="${targetId}" aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Edit Job</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
                     <div class="offcanvas-body" id="app-canvas-content-${jobId}">
                         <!-- Content will be dynamically loaded here -->
                     </div>
@@ -51,19 +47,53 @@ $(document).ready(function() {
 
         // Initialize and show the Offcanvas
         var canvasElement = document.getElementById(targetId);
-        if (canvasElement) {
-            var canvas = new bootstrap.Offcanvas(canvasElement);
-            canvas.show();
-        }
+        var canvas = new bootstrap.Offcanvas(canvasElement);
+        canvas.show();
+    });
+
+    // Handling click events to open the Update Modal
+    $(document).on('click', '.edit', function() {
+        var jobId = $(this).data('job-id');
+        fetchJobForUpdate(jobId);
+
+        // Show the modal
+        var updateModal = new bootstrap.Modal(document.getElementById('updateApplicationModal'));
+        updateModal.show();
     });
 
     function fetchJobDetails(jobId) {
         $.ajax({
-            url: 'update_job_details.php',  // Ensure this points to the correct PHP script
+            url: 'get_job_details.php',
             method: 'POST',
             data: { job_id: jobId },
             success: function(data) {
                 $(`#app-canvas-content-${jobId}`).html(data);
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+            }
+        });
+    }
+
+    function fetchJobForUpdate(jobId) {
+        $.ajax({
+            url: 'get_job_details.php', // Reuse this script to get job details
+            method: 'POST',
+            data: { job_id: jobId },
+            success: function(data) {
+                var job = JSON.parse(data); // Assuming the data is JSON
+                $('#update-job-id').val(job.id);
+                $('#update-job_title').val(job.job_title);
+                $('#update-job_link').val(job.job_link);
+                $('#update-company').val(job.company);
+                $('#update-location').val(job.location);
+                $('#update-pay').val(job.pay);
+                $('#update-bonus_pay').val(job.bonus_pay);
+                $('#update-status').val(job.status);
+                $('#update-job_type').val(job.job_type);
+                $('#update-notes').val(job.notes);
+                $('#update-watchlist').prop('checked', job.watchlist == 1);
+                $('#update-interview_set').prop('checked', job.interview_set == 1);
             },
             error: function(xhr, status, error) {
                 console.error('AJAX Error:', status, error);
