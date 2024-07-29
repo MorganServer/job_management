@@ -42,7 +42,7 @@ if (mysqli_num_rows($result) > 0) {
                 <i class='bi bi-eye text-success'></i>
             </a>
             &nbsp; 
-            <a class='edit' data-job-id='$id' data-bs-toggle='modal' data-bs-target='#updateApplicationModal' style='text-decoration: none; cursor: pointer;'>
+            <a class='edit' data-job-id='$id' style='text-decoration: none; cursor: pointer;'>
                 <i class='bi bi-pencil-square' style='color:#005382;'></i>
             </a>
             &nbsp;

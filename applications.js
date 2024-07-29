@@ -51,46 +51,33 @@ $(document).ready(function() {
         canvas.show();
     });
 
-    $(document).on('click', '.view', function() {
-        var jobId = $(this).data('job-id');
-        fetchJobDetails(jobId);
-    
-        // Initialize and show the modal
-        var modalElement = document.getElementById('jobDetailsModal');
-        var modal = new bootstrap.Modal(modalElement);
-        modal.show();
-    });
-    
-    function fetchJobDetails(jobId) {
-        $.ajax({
-            url: 'get_job_details.php',
-            type: 'GET',
-            data: { job_id: jobId },
-            dataType: 'json',
-            success: function(data) {
-                if (data.error) {
-                    $('#job-details-content').html('<p>Job not found</p>');
-                } else {
-                    // Populate modal content with job details
-                    var contentHtml = `
-                        <p><strong>Job Title:</strong> ${data.job_title}</p>
-                        <p><strong>Company:</strong> ${data.company}</p>
-                        <p><strong>Location:</strong> ${data.location}</p>
-                        <p><strong>Pay:</strong> ${data.pay}</p>
-                        <p><strong>Bonus Pay:</strong> ${data.bonus_pay}</p>
-                        <p><strong>Status:</strong> ${data.status}</p>
-                        <p><strong>Job Type:</strong> ${data.job_type}</p>
-                        <p><strong>Notes:</strong> ${data.notes}</p>
-                    `;
-                    $('#job-details-content').html(contentHtml);
-                }
-            },
-            error: function(error) {
-                console.error('Error fetching job details:', error);
-                $('#job-details-content').html('<p>An error occurred while fetching job details</p>');
-            }
-        });
+// Handling click events to open the Modal
+$(document).on('click', '.edit', function() {
+    var jobId = $(this).data('job-id');
+    fetchUpdateJobDetails(jobId);
+
+    var targetJobId = 'app-modal-' + jobId;
+    var existingModal = document.getElementById(targetJobId);
+
+    if (!existingModal) {
+        // Create and append Modal dynamically if not exists
+        var modalHtml = `
+            <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
+                <div class='modal-dialog modal-xl'>
+                    <div class='modal-content'>
+                        <!-- Content will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        `;
+        $('body').append(modalHtml);
     }
+
+    // Initialize and show the Modal
+    var modalElement = document.getElementById(targetJobId);
+    var modal = new bootstrap.Modal(modalElement);
+    modal.show();
+});
 
 
 });
