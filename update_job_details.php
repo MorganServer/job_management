@@ -33,7 +33,7 @@ if (mysqli_num_rows($result) > 0) {
                     <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                 </div>
                 <div class='modal-body'>
-                    <form id='updateApplicationForm' method='POST' action='update_job.php'>
+                    <form id='updateApplicationForm' method='POST'>
                         <input type='hidden' id='update-job-id' name='job_id' value='$job_id'>
                         <div class='row mb-3'>
                             <div class='col'>
