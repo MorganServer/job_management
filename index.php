@@ -1,6 +1,11 @@
 <?php
 require_once "application_queries.php";
 
+$sql="select count('1') from jobs";
+$result=mysqli_query($conn,$sql);
+$rowtotal=mysqli_fetch_array($result); 
+;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +32,7 @@ require_once "application_queries.php";
         <hr class="mt-2">
         <div class="mt-5"></div>
         <div class="top-content d-flex justify-content-between align-items-center">
-            <h2 class="ms-5">Applications</h2>
+            <h2 class="ms-5">Applications (<?php echo "$rowtotal[0]"; ?>)</h2>
             <a href="#" class="badge text-bg-success text-decoration-none me-5" data-bs-toggle="modal" data-bs-target="#addApplicationModal">Add Application</a>
         </div>
 
