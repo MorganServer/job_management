@@ -27,9 +27,8 @@ if (mysqli_num_rows($result) > 0) {
     $updated_at_formatted = date('M j, Y', strtotime($row['updated_at']));
 
     echo "
-    <form id='updateApplicationForm' method='POST'>
         <div class='modal-body'>
-            
+            <form id='updateApplicationForm' method='POST'>
                 <input type='hidden' id='update-job-id' name='job_id' value='$job_id'>
                 <div class='mb-3'>
                     <label for='update-job_title' class='form-label'>Job Title</label>
@@ -92,12 +91,12 @@ if (mysqli_num_rows($result) > 0) {
                 </div>     
                 <div class='mb-3'></div> 
                 </div>
-                
-            </div>
-            <div class='modal-footer'>
+            
+                <div class='modal-footer'>
                     <input type='submit' name='update-application' class='form-btn' value='Update Application'>
                 </div>
             </form>
+        </div>
                 
 
             <script>
