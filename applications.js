@@ -77,12 +77,12 @@ $(document).ready(function() {
 
     function fetchJobForUpdate(jobId) {
         $.ajax({
-            url: 'get_job_details.php', // Reuse this script to get job details
+            url: 'update_job_details.php', // Change to update_job_details.php
             method: 'POST',
             data: { job_id: jobId },
             success: function(data) {
                 var job = JSON.parse(data); // Assuming the data is JSON
-                $('#update-job-id').val(job.id);
+                $('#update-job-id').val(job.job_id);
                 $('#update-job_title').val(job.job_title);
                 $('#update-job_link').val(job.job_link);
                 $('#update-company').val(job.company);
