@@ -51,77 +51,47 @@ $(document).ready(function() {
         canvas.show();
     });
 
-    // Handling click events to open the Update Modal
-    $(document).on('click', '.edit', function() {
+    $(document).on('click', '.view', function() {
         var jobId = $(this).data('job-id');
-        fetchJobForUpdate(jobId);
-
-        // Show the modal
-        var updateModal = new bootstrap.Modal(document.getElementById('updateApplicationModal'));
-        updateModal.show();
+        fetchJobDetails(jobId);
+    
+        // Initialize and show the modal
+        var modalElement = document.getElementById('jobDetailsModal');
+        var modal = new bootstrap.Modal(modalElement);
+        modal.show();
     });
-
+    
     function fetchJobDetails(jobId) {
         $.ajax({
             url: 'get_job_details.php',
-            method: 'POST',
+            type: 'GET',
             data: { job_id: jobId },
+            dataType: 'json',
             success: function(data) {
-                $(`#app-canvas-content-${jobId}`).html(data);
+                if (data.error) {
+                    $('#job-details-content').html('<p>Job not found</p>');
+                } else {
+                    // Populate modal content with job details
+                    var contentHtml = `
+                        <p><strong>Job Title:</strong> ${data.job_title}</p>
+                        <p><strong>Company:</strong> ${data.company}</p>
+                        <p><strong>Location:</strong> ${data.location}</p>
+                        <p><strong>Pay:</strong> ${data.pay}</p>
+                        <p><strong>Bonus Pay:</strong> ${data.bonus_pay}</p>
+                        <p><strong>Status:</strong> ${data.status}</p>
+                        <p><strong>Job Type:</strong> ${data.job_type}</p>
+                        <p><strong>Notes:</strong> ${data.notes}</p>
+                    `;
+                    $('#job-details-content').html(contentHtml);
+                }
             },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', status, error);
+            error: function(error) {
+                console.error('Error fetching job details:', error);
+                $('#job-details-content').html('<p>An error occurred while fetching job details</p>');
             }
         });
     }
 
-    function fetchJobForUpdate(jobId) {
-        $.ajax({
-            url: 'update_job_details.php', // Change to update_job_details.php
-            method: 'POST',
-            data: { job_id: jobId },
-            success: function(data) {
-                var job = JSON.parse(data); // Assuming the data is JSON
-                $('#update-job-id').val(job.job_id);
-                $('#update-job_title').val(job.job_title);
-                $('#update-job_link').val(job.job_link);
-                $('#update-company').val(job.company);
-                $('#update-location').val(job.location);
-                $('#update-pay').val(job.pay);
-                $('#update-bonus_pay').val(job.bonus_pay);
-                $('#update-status').val(job.status);
-                $('#update-job_type').val(job.job_type);
-                $('#update-notes').val(job.notes);
-                $('#update-watchlist').prop('checked', job.watchlist == 1);
-                $('#update-interview_set').prop('checked', job.interview_set == 1);
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', status, error);
-            }
-        });
-    }
-    function openUpdateModal(jobId) {
-        // Set the job ID in the hidden input field
-        document.getElementById('update-job-id').value = jobId;
-    
-        // Fetch job details using AJAX
-        fetch(`get_job_details.php?job_id=${jobId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Populate form fields with job details
-                document.getElementById('update-job_title').value = data.job_title;
-                document.getElementById('update-job_link').value = data.job_link;
-                document.getElementById('update-company').value = data.company;
-                document.getElementById('update-location').value = data.location;
-                document.getElementById('update-pay').value = data.pay;
-                document.getElementById('update-bonus_pay').value = data.bonus_pay;
-                document.getElementById('update-status').value = data.status;
-                document.getElementById('update-job_type').value = data.job_type;
-                document.getElementById('update-notes').value = data.notes;
-                document.getElementById('update-watchlist').checked = data.watchlist == 1;
-                document.getElementById('update-interview_set').checked = data.interview_set == 1;
-            })
-            .catch(error => console.error('Error fetching job details:', error));
-    }
+
 });
 
