@@ -149,7 +149,7 @@ $rowtotal=mysqli_fetch_array($result);
         <table class="table mx-auto mt-5" style="width: 95%;">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    
                     <th scope="col">Job Title</th>
                     <th scope="col">Company</th>
                     <th scope="col">Location</th>
