@@ -136,27 +136,25 @@ require_once "application_queries.php";
 
 
         <?php if (isset($_GET['update_success'])): ?>
-            <div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-relative bd-example-toasts rounded-3">
-                <div class="toast-container p-3" id="toastPlacement">
-                  <div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-bs-delay="5000">
-                    <div class="toast-header">
-                      <img src="..." class="rounded me-2" alt="...">
-                      <strong class="me-auto">
-                          <i class="bi bi-circle-fill text-success" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>    
-                          Success
-                      </strong>
-                    </div>
-                    <div class="toast-body">
-                      <strong>Success!</strong> Application updated successfully.
-                    </div>
-                  </div>
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+              <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">
+                        <i class="bi bi-circle-fill text-success" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>
+                        Success
+                    </strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <strong>Success!</strong> Application updated successfully.
                 </div>
               </div>
-            
+            </div>
+
                 
-    <!-- <div class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert">
         <strong>Success!</strong> Application updated successfully.
-    </div> -->
+    </div>
 <?php elseif (isset($_GET['update_error'])): ?>
     <div class="alert alert-danger" role="alert">
         <strong>Error!</strong> There was an issue updating the application.
