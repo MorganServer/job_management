@@ -96,8 +96,9 @@ if (mysqli_num_rows($result) > 0) {
                     <div class='mb-3'></div> 
                     <div class='modal-footer'>
                         <input type='submit' name='update-application' class='form-btn' value='Update Application'>
+                    </form>
                     </div>
-                </form>
+                
 
             <script>
                 tinymce.init({
