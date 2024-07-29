@@ -53,44 +53,11 @@ $(document).ready(function() {
 
     function fetchJobDetails(jobId) {
         $.ajax({
-            url: 'get_job_details.php',
+            url: 'update_job_details.php',  // Script to fetch job details
             method: 'POST',
             data: { job_id: jobId },
             success: function(data) {
                 $(`#app-canvas-content-${jobId}`).html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', status, error);
-            }
-        });
-    }
-
-    // Handling click events to open the edit modal
-    $(document).on('click', '.edit', function() {
-        var jobId = $(this).data('job-id');
-        fetchJobDetailsForEdit(jobId);
-    });
-
-    function fetchJobDetailsForEdit(jobId) {
-        $.ajax({
-            url: 'get_job_details.php',
-            method: 'POST',
-            data: { job_id: jobId },
-            success: function(data) {
-                var jobDetails = JSON.parse(data);
-                $('#edit-job-id').val(jobDetails.job_id);
-                $('#edit-job_title').val(jobDetails.job_title);
-                $('#edit-job_link').val(jobDetails.job_link);
-                $('#edit-company').val(jobDetails.company);
-                $('#edit-location').val(jobDetails.location);
-                $('#edit-pay').val(jobDetails.pay);
-                $('#edit-bonus_pay').val(jobDetails.bonus_pay);
-                $('#edit-status').val(jobDetails.status);
-                $('#edit-job_type').val(jobDetails.job_type);
-                $('#edit-notes').val(jobDetails.notes);
-                $('#edit-watchlist').prop('checked', jobDetails.watchlist == 1);
-                $('#edit-interview_set').prop('checked', jobDetails.interview_set == 1);
-                $('#editApplicationModal').modal('show'); // Show the modal
             },
             error: function(xhr, status, error) {
                 console.error('AJAX Error:', status, error);
