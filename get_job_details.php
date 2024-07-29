@@ -29,7 +29,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "
     <button type='button' class='off-canvas-close-btn' data-bs-dismiss='offcanvas' aria-label='Close'><i class='bi bi-arrow-left-circle'></i></button>
     <hr>
-    <div class='main-project-details'>
+    <div class='main-project-details mb-5'>
         <div class='ms-3 me-3'>
             <p><span class='float-end'><i style='font-size: 12px; margin-top: -5px;' class='bi bi-circle-fill " . ($status == 'Applied' ? "text-primary" : ($status == 'Interviewed' ? "text-info" : ($status == 'Offered' ? "text-success" : "text-danger"))) . "'></i> &nbsp; $status</span></p>
             <h3 class='mt-3'>$job_title</h3>
