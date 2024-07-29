@@ -145,7 +145,7 @@ require_once "application_queries.php";
               <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <strong class="me-auto">
-                        <i class="bi bi-circle-fill text-danager" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>
+                        <i class="bi bi-circle-fill text-danger" style="font-size: 10px; vertical-align: .125rem !important; margin-top: -100px !important;"></i>
                         Failure
                     </strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
