@@ -1,0 +1,178 @@
+.offcanvas {
+    background-color: rgb(250, 248, 246) !important;
+    /* color: white !important; */
+    border: none !important;
+  }
+  
+  .offcanvas a {
+    text-decoration: none !important;
+    color: black !important;
+  }
+  
+  .offcanvas a:hover {
+    color: #994E4E !important;
+  }
+  .off-canvas-close-btn {
+    background: 0;
+    border: none;
+    color: black;
+    font-size: 24px;
+  }
+  .main-project-details {
+    width: 100% !important;
+  }
+  .main-project-details h3 {
+    font-size: 20px;
+  }
+  .main-project-details p {
+    color: black;
+    font-weight: 300;
+  }
+  .main-project-details p a {
+    padding-left: 15px;
+  }
+  .main-project-details img {
+    border-radius: 9px;
+    width: 95% !important;
+  }
+  .main-project-details h4 {
+    margin-top: 2em;
+    font-size: 18px;
+    margin-bottom: 0.8rem;
+  }
+  .main-project-details .open__project {
+    color: white !important;
+  }
+  .open__project {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    color: white !important;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.875em;
+    background-image: none;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-origin: padding-box;
+    background-clip: border-box;
+    background-color: #c6c6c6;
+  }
+  
+  .tags-block {
+    margin: 25px 0 0;
+  }
+  
+  .tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .tags>li {
+    display: inline-block;
+  }
+  
+  .tags a:first-child {
+    margin-left: 0;
+  }
+  
+  
+  .tags li,
+  .tagcloud a {
+    background-color: #666;
+    border: 1px solid transparent;
+    color: #fff;
+  }
+  
+  .tags li {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.5em;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin: 3px 2px 2px;
+    background-color: #666;
+    border: 1px solid transparent;
+  }
+          /* search */
+  
+  .search-bar {
+    position: relative;
+    width: 100%;
+  }
+  
+  
+  #search-results {
+    position: absolute;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    width: 100%;
+  }
+  
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #ffffff;
+  }
+  
+  .backup-card:not(:last-child) {
+    margin-bottom: 15px;
+  }
+  .search-bar {
+      margin-bottom: 20px; /* Space between search bar and top-content */
+      position: relative; /* Ensure proper positioning of child elements */
+  }
+  
+  .search-bar .form-control {
+      border-radius: 0px !important;
+      background-color: transparent;
+      border: none;
+      /* border-bottom: 1px solid transparent;  */
+      width: 85%;
+  }
+  
+  .search-bar .form-control::placeholder {
+      color: rgb(158, 158, 158); /* Placeholder color */
+  }
+  
+  .search-bar .search-icon {
+      position: absolute;
+      left: 10px; /* Adjust as needed */
+      top: 50%;
+      transform: translateY(-50%); /* Center vertically */
+      color: gray;
+  }
+  
+  .search-bar .notification-icon {
+      cursor: pointer;
+      position: absolute;
+      right: 10px; /* Adjust as needed */
+      top: 50%;
+      transform: translateY(-50%); /* Center vertically */
+      color: gray;
+      background-color: white; /* Background color for the circle */
+      border-radius: 50%; /* Make it a circle */
+      height: 40px; /* Height of the circle */
+      width: 40px; /* Width of the circle */
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center icon within the circle */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+  }
+  
+  .search-bar .form-control.ps-5 {
+      padding-left: 40px; /* Space for the search icon */
+  }
