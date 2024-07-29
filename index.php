@@ -210,6 +210,8 @@ require_once "application_queries.php";
     </div>
 </div>
 <!-- end Update Application Modal -->
+
+
 <?php if (isset($_GET['update_success'])): ?>
     <div class="alert alert-success" role="alert">
         <strong>Success!</strong> Application updated successfully.
