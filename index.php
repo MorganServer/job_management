@@ -26,7 +26,7 @@ $rowtotal=mysqli_fetch_array($result);
         <div class="search-bar position-relative">
             <form class="d-flex" id="search-form">
                 <i class="bi bi-search search-icon"></i>
-                <input class="form-control ps-5 shadow-none" id="search-input" type="search" placeholder="Search application, certification, experience, project, and accomplishments" aria-label="Search" autocorrect="off" autocomplete="off" spellcheck="false">
+                <input class="form-control ps-5 shadow-none" id="search-input" type="search" placeholder="Search by job title, company, location, or status" aria-label="Search" autocorrect="off" autocomplete="off" spellcheck="false">
             </form>
         </div>
         <hr class="mt-2">
