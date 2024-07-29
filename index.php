@@ -368,5 +368,7 @@ function fetchUpdateJobDetails(jobId) {
 
     </script>
 
+    <script src="applications.js"></script>
+
 </body>
 </html>
