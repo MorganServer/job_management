@@ -123,6 +123,100 @@ require_once "application_queries.php";
             </div>
         <!-- end Add Application Modal -->
 
+        <!-- Edit Application Modal -->
+            <div class="modal fade" id="editApplicationModal" tabindex="-1" aria-labelledby="editApplicationModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editApplicationModalLabel">Edit Application</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="edit-application-form" method="POST" action="update_job.php" class="mt-4">
+                      <input type="hidden" id="edit-job-id" name="job_id">
+
+                      <div class="row mb-3">
+                        <div class="col">
+                          <label for="edit-job_title" class="form-label">Job Title</label>
+                          <input type="text" class="form-control" id="edit-job_title" name="job_title">
+                        </div>
+                        <div class="col">
+                          <label for="edit-job_link" class="form-label">Job Link</label>
+                          <input type="text" class="form-control" id="edit-job_link" name="job_link">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col">
+                          <label for="edit-company" class="form-label">Company</label>
+                          <input type="text" class="form-control" id="edit-company" name="company">
+                        </div>
+                        <div class="col">
+                          <label for="edit-location" class="form-label">Location</label>
+                          <input type="text" class="form-control" id="edit-location" name="location">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col">
+                          <label for="edit-pay" class="form-label">Pay</label>
+                          <input type="text" class="form-control" id="edit-pay" name="pay">
+                        </div>
+                        <div class="col">
+                          <label for="edit-bonus_pay" class="form-label">Bonus Pay <span class="text-muted" style="font-size: 10px;">Optional</span></label>
+                          <input type="text" class="form-control" id="edit-bonus_pay" name="bonus_pay">
+                        </div>
+                        <div class="col">
+                          <label class="form-label" for="edit-status">Status</label>
+                          <select class="form-control" id="edit-status" name="status">
+                            <option value="">Please select one...</option>
+                            <option value="Applied">Applied</option>
+                            <option value="Interviewed">Interviewed</option>
+                            <option value="Offered">Offered</option>
+                            <option value="Rejected">Rejected</option>
+                          </select>
+                        </div>
+                        <div class="col">
+                          <label class="form-label" for="edit-job_type">Job Type</label>
+                          <select class="form-control" id="edit-job_type" name="job_type">
+                            <option value="">Please select one...</option>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Part Time">Part Time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                            <option value="Temporary">Temporary</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col">
+                          <label class="form-label" for="edit-notes">Notes</label>
+                          <textarea class="form-control" id="edit-notes" name="notes" rows="5"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3 ps-3">
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="edit-watchlist" name="watchlist" value="1">
+                          <label class="form-check-label" for="edit-watchlist">Add to Watchlist</label>
+                        </div>
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="edit-interview_set" name="interview_set" value="1">
+                          <label class="form-check-label" for="edit-interview_set">Interview Set</label>
+                        </div>
+                      </div>
+
+                      <input type="submit" name="update-application" class="form-btn" value="Update Application">
+                      <div class="pb-4"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!-- end Edit Application Modal -->
+
+
 
         <table class="table mx-auto mt-5" style="width: 95%;">
             <thead>

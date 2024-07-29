@@ -25,31 +25,10 @@ $(document).ready(function() {
         }
     });
 
-    // Handling click events to open the off-canvas
-    $(document).on('click', '.view', function() {
+    // Handling click events to open the Edit Modal
+    $(document).on('click', '.edit', function() {
         var jobId = $(this).data('job-id');
         fetchJobDetails(jobId);
-
-        var targetId = 'app-canvas-' + jobId;
-        var existingCanvas = document.getElementById(targetId);
-
-        if (!existingCanvas) {
-            // Create and append Offcanvas dynamically if not exists
-            var offcanvasHtml = `
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="${targetId}" aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-body" id="app-canvas-content-${jobId}">
-                        
-                        <!-- Content will be dynamically loaded here -->
-                    </div>
-                </div>
-            `;
-            $('body').append(offcanvasHtml);
-        }
-
-        // Initialize and show the Offcanvas
-        var canvasElement = document.getElementById(targetId);
-        var canvas = new bootstrap.Offcanvas(canvasElement);
-        canvas.show();
     });
 
     function fetchJobDetails(jobId) {
@@ -58,7 +37,19 @@ $(document).ready(function() {
             method: 'POST',
             data: { job_id: jobId },
             success: function(data) {
-                $(`#app-canvas-content-${jobId}`).html(data);
+                var job = JSON.parse(data);
+                $('#edit-job-id').val(job.job_id);
+                $('#edit-job_title').val(job.job_title);
+                $('#edit-job_link').val(job.job_link);
+                $('#edit-company').val(job.company);
+                $('#edit-location').val(job.location);
+                $('#edit-pay').val(job.pay);
+                $('#edit-bonus_pay').val(job.bonus_pay);
+                $('#edit-status').val(job.status);
+                $('#edit-job_type').val(job.job_type);
+                $('#edit-notes').val(job.notes);
+                $('#edit-watchlist').prop('checked', job.watchlist == '1');
+                $('#edit-interview_set').prop('checked', job.interview_set == '1');
             },
             error: function(xhr, status, error) {
                 console.error('AJAX Error:', status, error);
