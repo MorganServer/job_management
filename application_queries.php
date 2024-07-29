@@ -1,5 +1,5 @@
 <?php
-// require_once "connection.php";
+require_once "connection.php";
 
 // Job - Add Job
     if (isset($_POST['add-application'])) {
@@ -30,7 +30,7 @@
 // End Job - Add Job
 
 // Job - Update Job
-    session_start(); // Start the session at the top of the script
+    session_start(); 
 
     if (isset($_POST['update-application'])) {
         $id = $_POST['job_id'];
