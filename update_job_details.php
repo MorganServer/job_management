@@ -91,9 +91,10 @@ if (mysqli_num_rows($result) > 0) {
                 <input type='checkbox' class='form-check-input' id='update-interview_set' name='interview_set' value='1' " . ($interview_set ? 'checked' : '') . ">
                 <label class='form-check-label' for='update-interview_set'>Interview Set</label>
             </div>
-        </div>
+        
         <div class='modal-footer'>
             <button type='submit' name='update-application' class='btn btn-primary'>Update Application</button>
+        </div>
         </div>
     </form>
 </div>
