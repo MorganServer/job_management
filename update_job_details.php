@@ -95,11 +95,11 @@ if (mysqli_num_rows($result) > 0) {
                             </div>
                         </div>   
                     </div>
-                    <div class='modal-footer'>
-                        <input type='submit' name='update-application' class='form-btn' value='Update Application'>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class='modal-footer'>
+                    <input type='submit' name='update-application' class='form-btn' value='Update Application'>
+                </div>
+            </form>
             <script>
                 tinymce.init({
                 selector: 'textarea',
