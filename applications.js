@@ -100,27 +100,28 @@ $(document).ready(function() {
             }
         });
     }
+    function openUpdateModal(jobId) {
+        // Set the job ID in the hidden input field
+        document.getElementById('update-job-id').value = jobId;
+    
+        // Fetch job details using AJAX
+        fetch(`get_job_details.php?job_id=${jobId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Populate form fields with job details
+                document.getElementById('update-job_title').value = data.job_title;
+                document.getElementById('update-job_link').value = data.job_link;
+                document.getElementById('update-company').value = data.company;
+                document.getElementById('update-location').value = data.location;
+                document.getElementById('update-pay').value = data.pay;
+                document.getElementById('update-bonus_pay').value = data.bonus_pay;
+                document.getElementById('update-status').value = data.status;
+                document.getElementById('update-job_type').value = data.job_type;
+                document.getElementById('update-notes').value = data.notes;
+                document.getElementById('update-watchlist').checked = data.watchlist == 1;
+                document.getElementById('update-interview_set').checked = data.interview_set == 1;
+            })
+            .catch(error => console.error('Error fetching job details:', error));
+    }
 });
-function openUpdateModal(jobId) {
-    // Set the job ID in the hidden input field
-    document.getElementById('update-job-id').value = jobId;
 
-    // Fetch job details using AJAX
-    fetch(`get_job_details.php?job_id=${jobId}`)
-        .then(response => response.json())
-        .then(data => {
-            // Populate form fields with job details
-            document.getElementById('update-job_title').value = data.job_title;
-            document.getElementById('update-job_link').value = data.job_link;
-            document.getElementById('update-company').value = data.company;
-            document.getElementById('update-location').value = data.location;
-            document.getElementById('update-pay').value = data.pay;
-            document.getElementById('update-bonus_pay').value = data.bonus_pay;
-            document.getElementById('update-status').value = data.status;
-            document.getElementById('update-job_type').value = data.job_type;
-            document.getElementById('update-notes').value = data.notes;
-            document.getElementById('update-watchlist').checked = data.watchlist == 1;
-            document.getElementById('update-interview_set').checked = data.interview_set == 1;
-        })
-        .catch(error => console.error('Error fetching job details:', error));
-}
