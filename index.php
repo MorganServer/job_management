@@ -209,7 +209,12 @@ require_once "application_queries.php";
                             // Create and append Modal dynamically if not exists
                             var modalHtml = `
                                 <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
-                                    ${data}
+                                    <div class='modal-dialog modal-xl modal-dialog-scrollable'>
+                                        <div class='modal-content'>
+                                            ${data}
+                                        </div>
+                                    </div>
+                                </div>
                             `;
                             $('body').append(modalHtml);
                         } else {
