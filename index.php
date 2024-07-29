@@ -140,10 +140,6 @@ require_once "application_queries.php";
               </div>
             </div>
 
-                
-    <div class="alert alert-success" role="alert">
-        <strong>Success!</strong> Application updated successfully.
-    </div>
 <?php elseif (isset($_GET['update_error'])): ?>
     <div class="alert alert-danger" role="alert">
         <strong>Error!</strong> There was an issue updating the application.
@@ -290,6 +286,16 @@ require_once "application_queries.php";
             });
         });
 
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var toastElement = document.getElementById('liveToast');
+        if (toastElement) {
+          var toast = new bootstrap.Toast(toastElement);
+          toast.show();
+        }
+      });
     </script>
 
 </body>
