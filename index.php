@@ -156,7 +156,7 @@ require_once "application_queries.php";
                         var toast = new bootstrap.Toast(toastElement);
                         toast.hide();
                         // Clear the session variable after the toast hides
-                        <?php unset($_SESSION['toast_message']); ?>
+                        <?php //unset($_SESSION['toast_message']); ?>
                     }, 5000);
                 </script>
             <?php endif; ?>
