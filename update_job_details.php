@@ -27,8 +27,6 @@ if (mysqli_num_rows($result) > 0) {
     $updated_at_formatted = date('M j, Y', strtotime($row['updated_at']));
 
     echo "
-    <div class='modal fade' id='updateApplicationModal' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
-        <div class='modal-dialog modal-xl'>
             <div class='modal-content'>
                 <div class='modal-header'>
                     <h5 class='modal-title' id='updateApplicationModalLabel'>Update Application</h5>
@@ -108,8 +106,7 @@ if (mysqli_num_rows($result) > 0) {
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
+
     ";
 }
 ?>

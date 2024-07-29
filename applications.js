@@ -51,34 +51,51 @@ $(document).ready(function() {
         canvas.show();
     });
 
-// Handling click events to open the Modal
-$(document).on('click', '.edit', function() {
-    var jobId = $(this).data('job-id');
-    fetchUpdateJobDetails(jobId);
+    // Handling click events to open the Modal
+    $(document).on('click', '.edit', function() {
+        var jobId = $(this).data('job-id');
+        fetchUpdateJobDetails(jobId);
 
-    var targetJobId = 'app-modal-' + jobId;
-    var existingModal = document.getElementById(targetJobId);
+        var targetJobId = 'app-modal-' + jobId;
+        var existingModal = document.getElementById(targetJobId);
 
-    if (!existingModal) {
-        // Create and append Modal dynamically if not exists
-        var modalHtml = `
-            <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
-                <div class='modal-dialog modal-xl'>
-                    <div class='modal-content'>
-                        <!-- Content will be dynamically loaded here -->
+        if (!existingModal) {
+            // Create and append Modal dynamically if not exists
+            var modalHtml = `
+                <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog modal-xl'>
+                        <div class='modal-content'>
+                            <!-- Content will be dynamically loaded here -->
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-        $('body').append(modalHtml);
-    }
+            `;
+            $('body').append(modalHtml);
+        }
 
-    // Initialize and show the Modal
-    var modalElement = document.getElementById(targetJobId);
-    var modal = new bootstrap.Modal(modalElement);
-    modal.show();
+        // Initialize and show the Modal
+        var modalElement = document.getElementById(targetJobId);
+        var modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    });
 });
 
+function fetchUpdateJobDetails(jobId) {
+    $.ajax({
+        url: 'update_job_details.php',
+        type: 'POST',
+        data: { job_id: jobId },
+        success: function(data) {
+            var targetJobId = 'app-modal-' + jobId;
+            $('#' + targetJobId + ' .modal-content').html(data);
 
-});
-
+            // Show the modal after content has been loaded
+            var modalElement = document.getElementById(targetJobId);
+            var modal = new bootstrap.Modal(modalElement);
+            modal.show();
+        },
+        error: function(error) {
+            console.error('Error fetching job details:', error);
+        }
+    });
+}
