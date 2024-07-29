@@ -212,9 +212,6 @@ require_once "application_queries.php";
                                     <div class='modal-dialog modal-xl modal-dialog-scrollable'>
                                         <div class='modal-content'>
                                             ${data}
-                                        </div>
-                                    </div>
-                                </div>
                             `;
                             $('body').append(modalHtml);
                         } else {
