@@ -25,8 +25,8 @@ $(document).ready(function() {
         }
     });
 
-    // Handling click events to open the off-canvas
-    $(document).on('click', '.view', function() {
+    // Handling click events to open the Offcanvas
+    $(document).on('click', '.edit', function() {
         var jobId = $(this).data('job-id');
         fetchJobDetails(jobId);
 
@@ -37,6 +37,10 @@ $(document).ready(function() {
             // Create and append Offcanvas dynamically if not exists
             var offcanvasHtml = `
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="${targetId}" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Edit Job</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
                     <div class="offcanvas-body" id="app-canvas-content-${jobId}">
                         <!-- Content will be dynamically loaded here -->
                     </div>
@@ -47,13 +51,15 @@ $(document).ready(function() {
 
         // Initialize and show the Offcanvas
         var canvasElement = document.getElementById(targetId);
-        var canvas = new bootstrap.Offcanvas(canvasElement);
-        canvas.show();
+        if (canvasElement) {
+            var canvas = new bootstrap.Offcanvas(canvasElement);
+            canvas.show();
+        }
     });
 
     function fetchJobDetails(jobId) {
         $.ajax({
-            url: 'update_job_details.php',  // Script to fetch job details
+            url: 'update_job_details.php',  // Ensure this points to the correct PHP script
             method: 'POST',
             data: { job_id: jobId },
             success: function(data) {
