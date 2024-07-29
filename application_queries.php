@@ -1,5 +1,6 @@
 <?php
 require_once "connection.php";
+session_start();
 
 // Job - Add Job
     if (isset($_POST['add-application'])) {
@@ -15,23 +16,23 @@ require_once "connection.php";
         if(isset($_POST['job_link'])) { $job_link = mysqli_real_escape_string($conn, $_POST['job_link']); } else { $job_link = ""; }
         if(isset($_POST['job_type'])) { $job_type = mysqli_real_escape_string($conn, $_POST['job_type']); } else { $job_type = ""; }
         if(isset($_POST['notes'])) { $notes = mysqli_real_escape_string($conn, $_POST['notes']); } else { $notes = ""; }
-    
-        $select = "SELECT * FROM jobs WHERE idno = '$idno'";
-        $result = mysqli_query($conn, $select);
-        if (mysqli_num_rows($result) > 0) {
-            $error[] = 'Job already exists!';
+
+        $insert = "INSERT INTO jobs (idno, job_title, company, location, pay, bonus_pay, status, watchlist, job_link, job_type, interview_set, notes) 
+        VALUES ('$idno',NULLIF('$job_title',''),NULLIF('$company',''),NULLIF('$location',''),NULLIF('$pay',''),NULLIF('$bonus_pay',''),NULLIF('$status',''), '$watchlist',NULLIF('$job_link',''),NULLIF('$job_type',''),'$interview_set',NULLIF('$notes',''))";
+
+        if (mysqli_query($conn, $insert)) {
+            $_SESSION['message'] = ['type' => 'success', 'text' => 'Application inserted successfully.'];
         } else {
-            $insert = "INSERT INTO jobs (idno, job_title, company, location, pay, bonus_pay, status, watchlist, job_link, job_type, interview_set, notes) 
-            VALUES ('$idno',NULLIF('$job_title',''),NULLIF('$company',''),NULLIF('$location',''),NULLIF('$pay',''),NULLIF('$bonus_pay',''),NULLIF('$status',''), '$watchlist',NULLIF('$job_link',''),NULLIF('$job_type',''),'$interview_set',NULLIF('$notes',''))";
-            mysqli_query($conn, $insert);
-            header('location: /');
+            $_SESSION['message'] = ['type' => 'error', 'text' => 'There was an issue inserting the application.'];
         }
+
+        header("Location: /"); 
+        exit();
+
     }
 // End Job - Add Job
 
 // Job - Update Job
-    session_start(); 
-
     if (isset($_POST['update-application'])) {
         $id = $_POST['job_id'];
         $watchlist = isset($_POST['watchlist']) ? 1 : 0;
@@ -66,7 +67,14 @@ require_once "connection.php";
         $id = $_GET['appdelid'];
 
         $sql = "DELETE FROM jobs WHERE job_id=$id";
-        $result = mysqli_query($conn, $sql);
+        if (mysqli_query($conn, $sql)) {
+            $_SESSION['message'] = ['type' => 'success', 'text' => 'Application deleted successfully.'];
+        } else {
+            $_SESSION['message'] = ['type' => 'error', 'text' => 'There was an issue deleting the application.'];
+        }
+
+        header("Location: /"); 
+        exit(); 
     }
 // End Jobs - Delete Job
 
