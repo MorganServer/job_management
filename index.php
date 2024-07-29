@@ -211,7 +211,9 @@ require_once "application_queries.php";
                                 <div class='modal fade' id='${targetJobId}' tabindex='-1' aria-labelledby='updateApplicationModalLabel' aria-hidden='true'>
                                     <div class='modal-dialog modal-xl modal-dialog-scrollable'>
                                         <div class='modal-content'>
-                                            ${data}
+                                            <div class='modal-body'>
+                                                ${data}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
