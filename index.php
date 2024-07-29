@@ -101,10 +101,10 @@ require_once "application_queries.php";
                             </div>
                         </div>
                         <div class="mb-3"></div> 
-                  </div>
-                  <div class="modal-footer">
-                            <input type="submit" name="add-application" class="form-btn" value="Add Application">
-                <!-- </div> -->
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" name="add-application" class="form-btn" value="Add Application">
+                    </div>
                         
                     </form>
                 </div>
