@@ -29,7 +29,7 @@
 
         <!-- Add Application Modal -->
             <div class="modal fade" id="addApplicationModal" tabindex="-1" aria-labelledby="addApplicationModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="addApplicationModalLabel">Add Application</h5>
