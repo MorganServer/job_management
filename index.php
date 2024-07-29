@@ -101,13 +101,13 @@ require_once "application_queries.php";
                                 <label class="form-check-label" for="interview_set">Interview Set</label>
                             </div>
                         </div>
-                        <div class="mb-3"></div>
-                        <div class="modal-footer">
+                        <div class="mb-3"></div> 
+                  </div>
+                  <div class="modal-footer">
                             <input type="submit" name="add-application" class="form-btn" value="Add Application">
                         </div>
                         
                     </form>
-                  </div>
                 </div>
               </div>
             </div>
