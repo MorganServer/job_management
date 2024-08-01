@@ -42,9 +42,9 @@ if (mysqli_num_rows($result) > 0) {
             <h4>Location</h4>
             <p>$location</p>
             <h4>Pay</h4>
-            <p>" . ($pay ? $pay : "No pay listed.") . "</p>
+            <p>" . ($pay ? "$" . $pay : "No pay listed.") . "</p>
             <h4>Bonus Pay</h4>
-            <p>" . ($bonus_pay ? $bonus_pay : "No bonus pay listed.") . "</p>
+            <p>" . ($bonus_pay ? "$" . $bonus_pay : "No bonus pay listed.") . "</p>
             <h4>Job Type</h4>
             <p>$job_type</p>
             <h4>Other Details</h4>
