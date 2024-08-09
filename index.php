@@ -13,6 +13,10 @@ $r_sql="select count('1') from jobs where status ='Rejected'";
 $r_result=mysqli_query($conn,$r_sql);
 $rejected_total=mysqli_fetch_array($r_result);
 
+$o_sql="select count('1') from jobs where status ='Offered'";
+$o_result=mysqli_query($conn,$o_sql);
+$offered_total=mysqli_fetch_array($o_result);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +50,7 @@ $rejected_total=mysqli_fetch_array($r_result);
                 <div class="row d-inline">
                     <span class="text-secondary" style="font-size: 12px;"><strong>Interviewed:</strong> <?php echo "$interviewed_total[0]"; ?></span>
                     <span class="text-secondary" style="font-size: 12px;"><strong>Rejected:</strong> <?php echo "$rejected_total[0]"; ?></span>
+                    <span class="text-secondary" style="font-size: 12px;"><strong>Offered:</strong> <?php echo "$offered_total[0]"; ?></span>
                 </div>
             </div>
             <a href="#" class="badge text-bg-success text-decoration-none me-5" data-bs-toggle="modal" data-bs-target="#addApplicationModal">Add Application</a>
