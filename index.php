@@ -5,6 +5,10 @@ $sql="select count('1') from jobs";
 $result=mysqli_query($conn,$sql);
 $rowtotal=mysqli_fetch_array($result); 
 
+$i_sql="select count('1') from jobs where status ='Interviewed'";
+$i_result=mysqli_query($conn,$i_sql);
+$interviewed_total=mysqli_fetch_array($i_result);
+
 $r_sql="select count('1') from jobs where status ='Rejected'";
 $r_result=mysqli_query($conn,$r_sql);
 $rejected_total=mysqli_fetch_array($r_result);
@@ -36,7 +40,8 @@ $rejected_total=mysqli_fetch_array($r_result);
         <div class="mt-5"></div>
         <div class="top-content d-flex justify-content-between align-items-center">
             <h2 class="ms-5">Applications (<?php echo "$rowtotal[0]"; ?>)</h2>
-            <span class="text-secondary" style="font-size: 10px;">Rejected: <?php echo "$rowtotal[0]"; ?></span>
+            <span class="text-secondary" style="font-size: 12px;"><strong>Interviewed:</strong> <?php echo "$interviewed_total[0]"; ?></span>
+            <span class="text-secondary" style="font-size: 12px;"><strong>Rejected:</strong> <?php echo "$rejected_total[0]"; ?></span>
             <a href="#" class="badge text-bg-success text-decoration-none me-5" data-bs-toggle="modal" data-bs-target="#addApplicationModal">Add Application</a>
         </div>
 
