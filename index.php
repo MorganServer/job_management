@@ -39,11 +39,11 @@ $rejected_total=mysqli_fetch_array($r_result);
         <hr class="mt-2">
         <div class="mt-5"></div>
         <div class="top-content d-flex justify-content-between align-items-center">
-            <div class="col">
+            <div class="col ms-5">
                 <div class="row">
-                    <h2 class="ms-5">Applications (<?php echo "$rowtotal[0]"; ?>)</h2>
+                    <h2 class="">Applications (<?php echo "$rowtotal[0]"; ?>)</h2>
                 </div>
-                <div class="row d-inline ms-5">
+                <div class="row d-inline">
                     <span class="text-secondary" style="font-size: 12px;"><strong>Interviewed:</strong> <?php echo "$interviewed_total[0]"; ?></span>
                     <span class="text-secondary" style="font-size: 12px;"><strong>Rejected:</strong> <?php echo "$rejected_total[0]"; ?></span>
                 </div>
