@@ -39,9 +39,15 @@ $rejected_total=mysqli_fetch_array($r_result);
         <hr class="mt-2">
         <div class="mt-5"></div>
         <div class="top-content d-flex justify-content-between align-items-center">
-            <h2 class="ms-5">Applications (<?php echo "$rowtotal[0]"; ?>)</h2>
-            <span class="text-secondary" style="font-size: 12px;"><strong>Interviewed:</strong> <?php echo "$interviewed_total[0]"; ?></span>
-            <span class="text-secondary" style="font-size: 12px;"><strong>Rejected:</strong> <?php echo "$rejected_total[0]"; ?></span>
+            <div class="col">
+                <div class="row">
+                    <h2 class="ms-5">Applications (<?php echo "$rowtotal[0]"; ?>)</h2>
+                </div>
+                <div class="row">
+                    <span class="text-secondary" style="font-size: 12px;"><strong>Interviewed:</strong> <?php echo "$interviewed_total[0]"; ?></span>
+                    <span class="text-secondary" style="font-size: 12px;"><strong>Rejected:</strong> <?php echo "$rejected_total[0]"; ?></span>
+                </div>
+            </div>
             <a href="#" class="badge text-bg-success text-decoration-none me-5" data-bs-toggle="modal" data-bs-target="#addApplicationModal">Add Application</a>
         </div>
 
