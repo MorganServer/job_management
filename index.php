@@ -5,6 +5,10 @@ $sql="select count('1') from jobs";
 $result=mysqli_query($conn,$sql);
 $rowtotal=mysqli_fetch_array($result); 
 
+$a_sql="select count('1') from jobs where status ='Applied'";
+$a_result=mysqli_query($conn,$a_sql);
+$applied_total=mysqli_fetch_array($a_result);
+
 $i_sql="select count('1') from jobs where status ='Interviewed'";
 $i_result=mysqli_query($conn,$i_sql);
 $interviewed_total=mysqli_fetch_array($i_result);
@@ -48,6 +52,7 @@ $offered_total=mysqli_fetch_array($o_result);
                     <h2 class="">Applications (<?php echo "$rowtotal[0]"; ?>)</h2>
                 </div>
                 <div class="row d-inline">
+                    <span class="text-secondary" style="font-size: 12px;"><strong>Applied:</strong> <?php echo "$applied_total[0]"; ?></span>
                     <span class="text-secondary" style="font-size: 12px;"><strong>Interviewed:</strong> <?php echo "$interviewed_total[0]"; ?></span>
                     <span class="text-secondary" style="font-size: 12px;"><strong>Rejected:</strong> <?php echo "$rejected_total[0]"; ?></span>
                     <span class="text-secondary" style="font-size: 12px;"><strong>Offered:</strong> <?php echo "$offered_total[0]"; ?></span>
