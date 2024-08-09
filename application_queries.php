@@ -21,9 +21,9 @@ session_start();
         VALUES ('$idno',NULLIF('$job_title',''),NULLIF('$company',''),NULLIF('$location',''),NULLIF('$pay',''),NULLIF('$bonus_pay',''),NULLIF('$status',''), '$watchlist',NULLIF('$job_link',''),NULLIF('$job_type',''),'$interview_set',NULLIF('$notes',''))";
 
         if (mysqli_query($conn, $insert)) {
-            $_SESSION['message'] = ['type' => 'success', 'text' => 'Application inserted successfully.'];
+            $_SESSION['message'] = ['type' => 'success', 'text' => 'Application added successfully.'];
         } else {
-            $_SESSION['message'] = ['type' => 'error', 'text' => 'There was an issue inserting the application.'];
+            $_SESSION['message'] = ['type' => 'error', 'text' => 'There was an issue adding the application.'];
         }
 
         header("Location: /"); 
