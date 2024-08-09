@@ -36,31 +36,22 @@ if (mysqli_num_rows($result) > 0) {
         <td>$company</td>
         <td>$location</td>
         <td>$created_at</td>
-        <td>
-            // Determine the appropriate Bootstrap alert class based on the status
-            switch ($status) {
-                case 'Applied':
-                    $alertClass = 'alert-primary';
-                    break;
-                case 'Interviewed':
-                    $alertClass = 'alert-info';
-                    break;
-                case 'Rejected':
-                    $alertClass = 'alert-danger';
-                    break;
-                case 'Offered':
-                    $alertClass = 'alert-success';
-                    break;
-                default:
-                    $alertClass = 'alert-secondary'; // Default class if status is unknown
-                    break;
-            }
-            ?>
-                
-            <div class='alert $alertClass' role='alert'>
-                $status
-            </div>
-        </td>
+        <td>";
+
+        // Add alert colors based on status
+        if ($status == 'Applied') {
+            echo "<span class='badge bg-primary'>$status</span>";
+        } elseif ($status == 'Interviewed') {
+            echo "<span class='badge bg-info'>$status</span>";
+        } elseif ($status == 'Rejected') {
+            echo "<span class='badge bg-danger'>$status</span>";
+        } elseif ($status == 'Offered') {
+            echo "<span class='badge bg-success'>$status</span>";
+        } else {
+            echo "$status"; // Default to plain text if status doesn't match any condition
+        }
+
+        echo "</td>
         <td style='font-size: 20px;'>
             <a class='view' data-job-id='$id' style='text-decoration: none; cursor: pointer;'>
                 <i class='bi bi-eye text-success'></i>
@@ -75,6 +66,7 @@ if (mysqli_num_rows($result) > 0) {
             </a>
         </td>
       </tr>";
+
     }
 } else {
     echo "<tr><td colspan='7' class='text-center'>No jobs found.</td></tr>";
