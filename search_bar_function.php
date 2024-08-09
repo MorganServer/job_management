@@ -36,7 +36,31 @@ if (mysqli_num_rows($result) > 0) {
         <td>$company</td>
         <td>$location</td>
         <td>$created_at</td>
-        <td>$status</td>
+        <td>
+            // Determine the appropriate Bootstrap alert class based on the status
+            switch ($status) {
+                case 'Applied':
+                    $alertClass = 'alert-primary';
+                    break;
+                case 'Interviewed':
+                    $alertClass = 'alert-info';
+                    break;
+                case 'Rejected':
+                    $alertClass = 'alert-danger';
+                    break;
+                case 'Offered':
+                    $alertClass = 'alert-success';
+                    break;
+                default:
+                    $alertClass = 'alert-secondary'; // Default class if status is unknown
+                    break;
+            }
+            ?>
+                
+            <div class='alert $alertClass' role='alert'>
+                $status
+            </div>
+        </td>
         <td style='font-size: 20px;'>
             <a class='view' data-job-id='$id' style='text-decoration: none; cursor: pointer;'>
                 <i class='bi bi-eye text-success'></i>
