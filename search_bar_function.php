@@ -38,15 +38,15 @@ if (mysqli_num_rows($result) > 0) {
         <td>$created_at</td>
         <td>";
 
-        // Add alert colors based on status
+        // Add custom styles based on status
         if ($status == 'Applied') {
             echo "<span class='badge rounded-pill' style='background-color: #cce5ff; color: #004085;'>$status</span>";
         } elseif ($status == 'Interviewed') {
-            echo "<span class='badge bg-info'>$status</span>";
+            echo "<span class='badge rounded-pill' style='background-color: #d1ecf1; color: #0c5460;'>$status</span>";
         } elseif ($status == 'Rejected') {
-            echo "<span class='badge bg-danger'>$status</span>";
+            echo "<span class='badge rounded-pill' style='background-color: #f8d7da; color: #721c24;'>$status</span>";
         } elseif ($status == 'Offered') {
-            echo "<span class='badge bg-success'>$status</span>";
+            echo "<span class='badge rounded-pill' style='background-color: #d4edda; color: #155724;'>$status</span>";
         } else {
             echo "$status"; // Default to plain text if status doesn't match any condition
         }
