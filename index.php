@@ -43,7 +43,7 @@ $rejected_total=mysqli_fetch_array($r_result);
                 <div class="row">
                     <h2 class="ms-5">Applications (<?php echo "$rowtotal[0]"; ?>)</h2>
                 </div>
-                <div class="row d-flex ms-2">
+                <div class="row d-flex flex-row ms-5">
                     <span class="text-secondary" style="font-size: 12px;"><strong>Interviewed:</strong> <?php echo "$interviewed_total[0]"; ?></span>
                     <span class="text-secondary" style="font-size: 12px;"><strong>Rejected:</strong> <?php echo "$rejected_total[0]"; ?></span>
                 </div>
